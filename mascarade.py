@@ -1,6 +1,4 @@
-import random
+import dashboard
 
-# All characters available
-roleList = ["spy", "bishop", "fool", "inquisitor", "judge", "peasant", "queen", "king", "witch", "cheat", "widow", "thief", "beggar"]
+print "Players Role List: ", dashboard.playersRoleList
 
-print random.choice(roleList)
