@@ -5,9 +5,9 @@ allRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", "peasant", "quee
 
 while True:
 	try:
-		playersNumber = int(raw_input("Number of players? (4-13) "))
-		if playersNumber < 4 or playersNumber > 13:
-			print "Please enter a number between 4 to 13."
+		playersNumber = int(raw_input("Number of players (4 - %d)? " %len(allRolesList)))
+		if playersNumber < 4 or playersNumber > len(allRolesList):
+			print "Please enter a number between 4 to %d." %len(allRolesList)
 			continue
 	except:
 		print "Please enter a valid number."
