@@ -24,3 +24,10 @@ while playersNumber > 0:
 	allRolesList.remove(role)
 	playersNumber -= 1
 
+
+# Round counter
+round = 0
+while True:
+	raw_input("Press enter for testing round counter")
+	round += 1
+	print round
