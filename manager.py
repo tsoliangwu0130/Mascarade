@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import random
+import characterDescription
+
 
 # All roles available
 allRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", "peasant", "peasant", "queen", "king", "witch", "cheat", "widow", "thief", "beggar"]
