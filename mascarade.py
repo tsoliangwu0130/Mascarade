@@ -1,4 +1,4 @@
 from role import *
-import dashboard
+import manager
 
 print "Players Role List: ", dashboard.playersRoleList
