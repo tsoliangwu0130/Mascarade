@@ -34,3 +34,7 @@ while True:
 	raw_input("Press enter for testing round counter")
 	round += 1
 	print round
+	if round <= 4:
+		print "Swap card? [Y/N]"
+	else:
+		print "Choose an action:\n1.Swap card\n2.Secretly look at the card.\n3.Announce their character.\n"
