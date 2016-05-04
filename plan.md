@@ -2,20 +2,24 @@
 Plan for Mascarade card game 
 
 ### Manager
-* Courthouse - 
+* Courthouse
 * Run Controller
 * Conflict
 * Game Over
 * Status
+..* Player's coin
+..* Role's publish status
 * Deck
 * Broadcast
 * Help
 
-### Character
+### Player
 * Swap
+..* Manager
+..* other player
 * Announce Character
 * Glance
-* Win
+* Status
 * Ablity list
 
 
