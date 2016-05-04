@@ -7,16 +7,16 @@ Plan for Mascarade card game
 * Conflict
 * Game Over
 * Status
-..* Player's coin
-..* Role's publish status
+ * Player's coin
+  * Role's publish status
 * Deck
 * Broadcast
 * Help
 
 ### Player
 * Swap
-..* Manager
-..* other player
+ * Manager
+  * other player
 * Announce Character
 * Glance
 * Status
