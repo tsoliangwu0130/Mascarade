@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import random
 import characterDescription
-
+import managerFunction
 
 # All roles available
 allRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", "peasant", "peasant", "queen", "king", "witch", "cheat", "widow", "thief", "beggar"]
@@ -23,7 +23,7 @@ playersRoleList = []
 # Randomly choose roles from the role list
 while playersNumber > 0:
 	role = random.choice(allRolesList)
-	playersRoleList.append(role) 
+	playersRoleList.append(role)
 	allRolesList.remove(role)
 	playersNumber -= 1
 
@@ -33,8 +33,20 @@ round = 0
 while True:
 	raw_input("Press enter for testing round counter")
 	round += 1
-	print round
+	# print round
+
+	# print first 4 round
 	if round <= 4:
 		print "Swap card? [Y/N]"
+		action = raw_input()
+		if action == "Y":
+			# swap card function define in managerFunction.py
+			managerFunction.swapCard(playersRoleList[0], playersRoleList[1])
+		elif action == "N":
+			continue
+		else:
+			"Please enter a valid option."
+	# after 4 round
 	else:
 		print "Choose an action:\n1.Swap card\n2.Secretly look at the card.\n3.Announce their character.\n"
+		action = raw_input()
