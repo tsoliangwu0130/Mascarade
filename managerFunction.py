@@ -10,3 +10,9 @@ def courtHouse(coin):
 # swap two card
 def swapCard(myCard, otherCard):
 	myCard, otherCard = otherCard, myCard
+
+def glance():
+	print "glance"
+
+def announce():
+	print "announce"

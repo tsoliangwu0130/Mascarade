@@ -50,3 +50,11 @@ while True:
 	else:
 		print "Choose an action:\n1.Swap card\n2.Secretly look at the card.\n3.Announce their character.\n"
 		action = raw_input()
+		if action == "1":
+			managerFunction.swapCard(playersRoleList[0], playersRoleList[1])
+		elif action == "2":
+			managerFunction.glance()
+		elif action == "3":
+			managerFunction.announce()
+		else:
+			"Please enter a valid option."
