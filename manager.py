@@ -2,6 +2,7 @@
 import random
 import characterDescription
 import managerFunction
+import player
 
 # All roles available
 allRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", "peasant", "peasant", "queen", "king", "witch", "cheat", "widow", "thief", "beggar"]
@@ -33,28 +34,7 @@ round = 0
 while True:
 	raw_input("Press enter for testing round counter")
 	round += 1
-	# print round
-
-	# print first 4 round
-	if round <= 4:
-		print "Swap card? [Y/N]"
-		action = raw_input()
-		if action == "Y":
-			# swap card function define in managerFunction.py
-			managerFunction.swapCard(playersRoleList[0], playersRoleList[1])
-		elif action == "N":
-			continue
-		else:
-			"Please enter a valid option."
-	# after 4 round
-	else:
-		print "Choose an action:\n1.Swap card\n2.Secretly look at the card.\n3.Announce their character.\n"
-		action = raw_input()
-		if action == "1":
-			managerFunction.swapCard(playersRoleList[0], playersRoleList[1])
-		elif action == "2":
-			managerFunction.glance()
-		elif action == "3":
-			managerFunction.announce()
-		else:
-			"Please enter a valid option."
+	print round
+	# get the action feedback from every player (the first argument is still modify)
+	feedback = player.player(playersRoleList[0],round)
+	print feedback
