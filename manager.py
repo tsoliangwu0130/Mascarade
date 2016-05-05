@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import random
 import characterDescription
-import managerFunction
+import function
 import player
 
 # All roles available
@@ -36,5 +36,11 @@ while True:
 	round += 1
 	print round
 	# get the action feedback from every player (the first argument is still modify)
-	feedback = player.player(playersRoleList[0],round)
-	print feedback
+	getRequest = player.player(playersRoleList[0],round)
+	print getRequest
+	if getRequest == "Swap":
+		print "Who do you want to swap with? (please enter player number)\n"
+		swapPlayer = int(raw_input())
+		playersRoleList = function.swapCard(0, swapPlayer, playersRoleList)
+	else:
+		continue

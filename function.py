@@ -8,8 +8,9 @@ def courtHouse(coin):
 	return total
 
 # swap two card
-def swapCard(myCard, otherCard):
-	myCard, otherCard = otherCard, myCard
+def swapCard(myCard, otherCard, playersRoleList):
+	playersRoleList[myCard], playersRoleList[otherCard] = playersRoleList[otherCard], playersRoleList[myCard]
+	return playersRoleList
 
 def glance():
 	print "glance"
