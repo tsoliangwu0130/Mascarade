@@ -7,3 +7,7 @@ Mascarade card game in Python version
 ### Authors
 * [Tso-Liang Wu](https://github.com/tsoliangwu0130)
 * [Tien-Lung Chang](https://github.com/ShannaChang)
+
+### Branchs
+* Tso-Liang Wu    -> master
+* Tien-Lung Chang -> shanna-branch 
