@@ -1,21 +1,25 @@
-#!/usr/bin/python
 import function
 
 # The function for player's action
 def player(currentPlayer, round):
-	# The first 4 round
+	
+	# the first 4 round
 	if round <= 4:
-		print "Swap card? [Y/N]"
-		action = raw_input()
+		action = raw_input("Swap card? [Y/N]")
 		if action == "Y":
 			return "Swap"
 		elif action == "N":
-			return "noAction"
+			return "No Action"
 		else:
 			"Please enter a valid option."
+	
 	# after 4 round
 	else:
-		print "Choose an action:\n1.Swap card\n2.Secretly look at the card.\n3.Announce their character.\n"
+		print "Choose an action:"
+		print "1. Swap card"
+		print "2. Secretly look at the card."
+		print "3. Announce their character."
+		
 		action = raw_input()
 		if action == "1":
 			return "Swap"
@@ -23,6 +27,6 @@ def player(currentPlayer, round):
 			print currentPlayer
 			return "Glance"
 		elif action == "3":
-			return "announce"
+			return "Announce"
 		else:
 			"Please enter a valid option."

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 def roleHelp():
 	print "[ Spy ]: The Spy secretly looks at their card and another player's card before swapping their care or not.\n"
 
