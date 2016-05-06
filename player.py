@@ -24,7 +24,7 @@ def player(currentPlayer, round):
 		if action == "1":
 			return "Swap"
 		elif action == "2":
-			function.glance()
+			print currentPlayer
 			return "Glance"
 		elif action == "3":
 			return "Announce"
