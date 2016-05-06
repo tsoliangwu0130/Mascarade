@@ -1,11 +1,8 @@
-#!/usr/bin/python
-total = 0
-
 # courthouse function: manage the coin in couthouse
 def courtHouse(coin):
-	global total
-	total += coin
-	return total
+	global courtTotalCoins
+	courtTotalCoins += coin
+	return courtTotalCoins
 
 # swap two card
 def swapCard(myCard, otherCard, playersRoleList):

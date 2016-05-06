@@ -1,4 +1,3 @@
-#!/usr/bin/python
 import random
 import characterDescription
 import function
@@ -34,12 +33,13 @@ round = 0
 while True:
 	raw_input("Press enter for testing round counter")
 	round += 1
-	print round
+	print "round: ", round
+
 	# get the action feedback from every player (the first argument is still modify)
-	getRequest = player.player(playersRoleList[0],round)
+	getRequest = player.player(playersRoleList[0], round)
 	print getRequest
 	if getRequest == "Swap":
-		print "Who do you want to swap with? (please enter player number)\n"
+		print "Who do you want to swap with? (please enter player number)"
 		swapPlayer = int(raw_input())
 		playersRoleList = function.swapCard(0, swapPlayer, playersRoleList)
 	else:
