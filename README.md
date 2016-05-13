@@ -12,19 +12,19 @@ Mascarade card game in Python version
 
 ### Tasks
 ---------
-* manager.py 
+**manager.py**
 1. count round, decide which player is able to act
 2. send requests to player, either get players' current coins or ask for reaction
 3. record players public status
 4. manage deck and court
 5. terminate game
 
-* narrator.py
+**narrator.py**
 1. describe the game rules
 2. describe each role's ability
 3. show the help info of this application
 
-* player.py
+**player.py**
 1. all player must extend the Player class, which has a action list:
 	a. swap: swap a card either to another player or to the deck
 	b. glance: glance the role identity
