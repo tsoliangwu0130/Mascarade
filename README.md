@@ -29,9 +29,11 @@ Mascarade card game in Python version
 **player.py**
 
 1. all player must extend the Player class, which has a action list:
+
 	a. swap: swap a card either to another player or to the deck
 	b. glance: glance the role identity
 	c. declare: execute the role's ability
+	
 2. suspected role identity (for A.I. purpose)
 3. actual role identity
 4. status: current holding coins, public identity or not, etc.
