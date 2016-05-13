@@ -12,7 +12,7 @@ Mascarade card game in Python version
 
 ### Tasks
 ---------
-**manager.py**
+**manager.py** - branch: feature/implement-manager
 
 1. count round, decide which player is able to act
 2. send requests to player, either get players' current coins or ask for reaction
@@ -20,13 +20,13 @@ Mascarade card game in Python version
 4. manage deck and court
 5. terminate game
 
-**narrator.py**
+**narrator.py** - branch: feature/implement-narrator
 
 1. describe the game rules
 2. describe each role's ability
 3. show the help info of this application
 
-**player.py**
+**player.py** - branch: feature/implement-player
 
 1. all player must extend the Player class, which has a action list:
 	- **swap**: swap a card either to another player or to the deck
