@@ -7,12 +7,6 @@ availableRolesList = ["spy", "bishop", "fool", "inquisitor", "judge",
                       "peasant", "peasant", "queen", "king", "witch", 
                       "cheat", "widow", "thief", "beggar"]
 
-def sendRequest(request):
-	print "send", request
-
-def receiveRequest(request):
-	print "receive", request
-
 class Player():	
 	# each player must to be created by giving an actual role
 	def __init__(self, actualRole):
@@ -22,8 +16,7 @@ class Player():
 		self.status        = initialStatus # player status (public / private)
 
 	def swap(self):
-		sendRequest(1)
-		receiveRequest(2)
+		pass
 
 	def glance(self):
 		print "*** Glance: You are the " + self.actualRole + " ! ***"
@@ -31,7 +24,3 @@ class Player():
 
 	def declare(self):
 		pass
-
-# testing
-player = Player("king")
-player.swap()
