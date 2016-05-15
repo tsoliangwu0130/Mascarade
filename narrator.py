@@ -70,7 +70,6 @@ def rule(rule):
 	else:
 		print "No character found."
 
-
 # test
 print "Game Rule :\n ability: for all the ability description.\n ability character: for specific character description.\n rule: for game rule description.\n "
 input  = raw_input()
