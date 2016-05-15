@@ -1,5 +1,6 @@
+# Description for every character's ability.
 def ability(role):
-	description = {
+	roleDescription = {
 	'Beggar':'The beggar has no ability',
 	'Bishop':'The bishop takes two gold coins from the richest of the other players. In case of a tie, the bishop chooses from which player the two coins are taken.',
 	'Cheat':'If they have 10 gold coins or more, the cheat wins the game.',
@@ -14,37 +15,40 @@ def ability(role):
 	'Widow':'The widow receives coins from the bank to bring her fortune up to 10 coins in total.', 
 	'Witch':'The witch can swap all of her fortune with that of another player of their choice.'}
 
-	if role == "blank":
-		print description
+	if role == "blank": # An option for list every character's ability.
+		for key,value in roleDescription.items():
+			print "["+key+"]" 
+			print value
 	elif role == "beggar":
-		print description['Beggar']
+		print roleDescription['Beggar']
 	elif role == "bishop":
-		print description['Bishop']
+		print roleDescription['Bishop']
 	elif role == "cheat":
-		print description['Cheat']
+		print roleDescription['Cheat']
 	elif role == "fool":
-		print description['Fool']
+		print roleDescription['Fool']
 	elif role == "inquisitor":
-		print description['Inquisitor']
+		print roleDescription['Inquisitor']
 	elif role == "judge":
-		print description['Judge']
+		print roleDescription['Judge']
 	elif role == "king":
-		print description['King']
+		print roleDescription['King']
 	elif role == "peasant":
-		print description['Peasant']
+		print roleDescription['Peasant']
 	elif role == "queen":
-		print description['Queen']
+		print roleDescription['Queen']
 	elif role == "spy":
-		print description['Spy']
+		print roleDescription['Spy']
 	elif role == "thief":
-		print description['Thief']
+		print roleDescription['Thief']
 	elif role == "widow":
-		print description['Widow']
+		print roleDescription['Widow']
 	elif role == "witch":
-		print description['Witch']
+		print roleDescription['Witch']
 	else:
 		print "No character found."
 
+# Description for game rule
 def rule(rule):
 	category = "Rule Category:\n 1.Setup\n 2.Game Turn\n 3.Action Swap\n 4.Action Glence\n 5.Action Announcment\n 6.End of Game"
 	ruleDescription = {
@@ -76,16 +80,16 @@ def rule(rule):
 print "Game Rule :\n ability: for all the ability description.\n ability character: for specific character description.\n rule: for game rule description."
 print "->"
 input  = raw_input()
-option = input.split()
+option = input.split() # Get the option of ability or rule
 
-if option[0] == "ability":
-	if len(option) == 1:
+if option[0] == "ability": # An option of ability
+	if len(option) == 1: # An option of all the character's ability. 
 		ability("blank")
-	else:
+	else: # An option of specific character's ability.
 		ability(option[1])
-elif option[0] == "rule":
+elif option[0] == "rule": # An option of rule
 	rule("category")
-	print "Enter a number: "
+	print "Enter a number: " # Enter a number to get a specific rule description.. 
 	ruleOption = raw_input()
 	rule(ruleOption)
 else:
