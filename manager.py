@@ -51,6 +51,7 @@ def askResponse(player, action):
  		
  		# swap from deck
  		if target == 'deck':
+ 			print "*** Swap from the deck! ***"
  			newRole = random.choice(deck)
  			deck.remove(newRole)
  			player.swap(newRole)
@@ -58,6 +59,7 @@ def askResponse(player, action):
  		
  		# swap from another player
  		else:
+ 			print "*** Swap with player", target, "! ***"
  			newRole = playerList[int(target)].actualRole
  			playerList[int(target)].swap(oldRole)
  			player.swap(newRole)

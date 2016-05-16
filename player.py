@@ -14,7 +14,6 @@ class Player():
 		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
 
 	def swap(self, newRole):
-		print "*** Swap! ***"
 		self.actualRole = newRole
 
 	def glance(self):
