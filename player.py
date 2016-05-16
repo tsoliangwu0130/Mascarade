@@ -6,11 +6,12 @@ initialStatus = "private"
 
 class Player():	
 	# each player must to be created by giving an actual role
-	def __init__(self, availableRolesList, actualRole):
+	def __init__(self, number, availableRolesList, actualRole):
+		self.number        = number # player number
 		self.coin          = initialCoin # current holding coins
-		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
-		self.actualRole    = actualRole # actual role identity
 		self.status        = initialStatus # player status (public / private)
+		self.actualRole    = actualRole # actual role identity
+		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
 
 	def swap(self):
 		pass

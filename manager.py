@@ -10,7 +10,20 @@ playerList = [] # current players list
 
 playersNum  = int(raw_input("Please enter the number of players: "))
 for i in xrange(playersNum):
-	playerActualRole = random.choice(deck)
-	player = Player(availableRolesList, playerActualRole)
+	randomRole = random.choice(deck)
+	player     = Player(i, availableRolesList, randomRole)
 	playerList.append(player)
-	deck.remove(playerActualRole)
+	deck.remove(randomRole)
+
+def askInfo(player):
+	print ">>> player", player.number, "<<<"
+	print "Coin:  ", player.coin
+	print "Status:", player.status
+	if player.status == "public":
+		print "Role:  ", player.actualRole
+	else:
+		print "Role:   unknown"
+	print "==================="
+
+for player in playerList:
+	askInfo(player)
