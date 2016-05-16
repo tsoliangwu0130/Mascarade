@@ -1,6 +1,6 @@
 import random
 
-# initial variables
+# initial properties
 initialCoin        = 6
 initialStatus      = "private"
 availableRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", 
@@ -8,6 +8,7 @@ availableRolesList = ["spy", "bishop", "fool", "inquisitor", "judge",
                       "cheat", "widow", "thief", "beggar"]
 
 class Player():	
+	# each player must to be created by giving an actual role
 	def __init__(self, actualRole):
 		self.coin          = initialCoin # current holding coins
 		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
@@ -16,14 +17,10 @@ class Player():
 
 	def swap(self):
 		pass
+
 	def glance(self):
-		pass
+		print "*** Glance: You are the " + self.actualRole + " ! ***"
+		self.suspectedRole = self.actualRole
+
 	def declare(self):
 		pass
-
-# testing
-player = Player(random.choice(availableRolesList))
-print "play coin:", player.coin
-print "play suspectedRole:", player.suspectedRole
-print "play actualRole:", player.actualRole
-print "play status:", player.status
