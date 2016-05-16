@@ -3,7 +3,9 @@ import random
 import time
 
 # initial properties
-availableRolesList = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch']
+availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch'] # 14 roles available
+availableActionsList = ['swap', 'glance', 'announce'] # three basic actions player can do each round
+
 roundCount = 0 # current round number
 courtCoins = 0 # current coins in the court
 deck       = availableRolesList # current roles deck
@@ -30,9 +32,26 @@ def showInfo(player):
 		print "Role:   unknown"
 	print "==================="
 
-# ask response from the player
-def askResponse(player):
- 	player.glance()
+# ask response from player
+def askResponse(player, action):
+ 	if action == 'swap':
+ 		oldRole = player.actualRole
+ 		target  = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
+ 		
+ 		if target == 'deck':
+ 			newRole = random.choice(deck)
+ 			deck.remove(newRole)
+ 			player.swap(newRole)
+ 			deck.append(oldRole)
+ 		else:
+ 			newRole = playerList[int(target)].actualRole
+ 			playerList[int(target)].swap(oldRole)
+ 			player.swap(newRole)
+
+ 	elif action == 'glance':
+ 		player.glance()
+ 	elif action == 'announce':
+ 		player.announce()
 
 # start the game
 while True:
@@ -42,11 +61,13 @@ while True:
 	currentPlayer = playerList[currentOrder]
 
 	if currentOrder == userOrder:
-		request = raw_input("What do you want to do? ")
+		action         = raw_input("What do you want to do? ")
+		playerResponse = askResponse(player, action)
 	else:
 		print "player", currentPlayer.order, "is thinking..."
-		time.sleep(random.randint(1, 5))
-		playerResponse = askResponse(currentPlayer)
+		time.sleep(random.randint(1, 3))
+		action         = random.choice(availableActionsList)
+		playerResponse = askResponse(currentPlayer, action)
 	print "=========="
 
 	if roundCount > 10:
