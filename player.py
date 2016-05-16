@@ -18,7 +18,6 @@ class Player():
 		self.actualRole = newRole
 
 	def glance(self):
-		print "*** Glance: You are the " + self.actualRole + " ! ***"
 		self.suspectedRole = self.actualRole
 
 	def announce(self):

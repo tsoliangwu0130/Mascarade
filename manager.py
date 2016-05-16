@@ -64,6 +64,11 @@ def askResponse(player, action):
 
  	elif action == 'glance':
  		player.glance()
+ 		if player.order != userOrder:
+ 			print "*** Glance! ***"
+ 		else:
+ 			print "*** Glance: you are the", player.actualRole, "! ***" 
+ 	
  	elif action == 'announce':
  		player.announce()
 
