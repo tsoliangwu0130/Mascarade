@@ -19,38 +19,14 @@ def ability(role):
 		for key,value in roleDescription.items():
 			print "["+key+"]" 
 			print value
-	elif role == "beggar":
-		print roleDescription['Beggar']
-	elif role == "bishop":
-		print roleDescription['Bishop']
-	elif role == "cheat":
-		print roleDescription['Cheat']
-	elif role == "fool":
-		print roleDescription['Fool']
-	elif role == "inquisitor":
-		print roleDescription['Inquisitor']
-	elif role == "judge":
-		print roleDescription['Judge']
-	elif role == "king":
-		print roleDescription['King']
-	elif role == "peasant":
-		print roleDescription['Peasant']
-	elif role == "queen":
-		print roleDescription['Queen']
-	elif role == "spy":
-		print roleDescription['Spy']
-	elif role == "thief":
-		print roleDescription['Thief']
-	elif role == "widow":
-		print roleDescription['Widow']
-	elif role == "witch":
-		print roleDescription['Witch']
 	else:
-		print "No character found."
+		try:
+			print roleDescription[role]
+		except:
+			print "No character found."
 
 # Description for game rule
 def rule(rule):
-	category = "Rule Category:\n 1.Setup\n 2.Game Turn\n 3.Action Swap\n 4.Action Glance\n 5.Action Announcment\n 6.End of Game"
 	ruleDescription = {
 	'setup':'Each player starts with 6 gold coins. The character cards are shuffled, and each player receive one, in front of them. With 4 or 5 players, the remaining cards are placed, face up, in the middle of the table. When all players have taken a good look at the cards, they are all turned over so that they are face down. The character tokens are used to keep track of which character are present in the game. Play the proceeds in a clockwise direction.',
 	'gameTurn':'The first four turn are preparation turn. The player can:\n 1. Swap their card.\n 2. Glance their card.\n\nFrom the fifth turn on, the game begins in earnest and each player, on their turn, must perform, only one action from the following three:\n 1. Swap their card - or not.\n 2. Secretly look at their card.\n 3. Announce their character.\n',
@@ -60,7 +36,14 @@ def rule(rule):
 	'endOfGame':'As soon as a player has 13 or more gold coins, the game ends and that player wins. If any player loses their last gold coin, the game ends and the richest player wins. Tied victories are sometimes possible.'}
 
 	if   rule == "category":
-		print category
+		print "Rule Category:"
+		print "1.Setup"
+		print "2.Game Turn"
+		print "3.Action Swap" 
+		print "4.Action Glance" 
+		print "5.Action Announcment" 
+		print "6.End of Game"
+
 	elif rule == "1":
 		print ruleDescription['setup']
 	elif rule == "2":
@@ -74,10 +57,13 @@ def rule(rule):
 	elif rule == '6':
 		print ruleDescription['endOfGame']
 	else:
-		print "No character found."
+		print "No rule found."
 
 # test
-print "Game Rule :\n ability: for all the ability description.\n ability character: for specific character description.\n rule: for game rule description."
+print "Game Rule :"
+print "ability: for all the ability description."
+print "ability character: for specific character description." 
+print "rule: for game rule description."
 print "->"
 input  = raw_input()
 option = input.split() # Get the option of ability or rule
