@@ -6,8 +6,8 @@ initialStatus = "private"
 
 class Player():	
 	# each player must to be created by giving an actual role
-	def __init__(self, number, availableRolesList, actualRole):
-		self.number        = number # player number
+	def __init__(self, order, availableRolesList, actualRole):
+		self.order         = order # player's order number
 		self.coin          = initialCoin # current holding coins
 		self.status        = initialStatus # player status (public / private)
 		self.actualRole    = actualRole # actual role identity
