@@ -21,6 +21,9 @@ for i in xrange(playersNum):
 	playerList.append(player)
 	deck.remove(randomRole)
 
+targetList = playerList[:]
+targetList.append("deck")
+
 # show the player information
 def showInfo(player):
 	print ">>> player", player.order, "<<<"
@@ -36,13 +39,24 @@ def showInfo(player):
 def askResponse(player, action):
  	if action == 'swap':
  		oldRole = player.actualRole
- 		target  = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
+
+ 		if player.order != userOrder:
+ 			targetPlayer = random.choice(targetList)
+ 			if targetPlayer == 'deck':
+ 				target = targetPlayer
+ 			else:
+ 				target = targetPlayer.order
+ 		else:
+ 			target = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
  		
+ 		# swap from deck
  		if target == 'deck':
  			newRole = random.choice(deck)
  			deck.remove(newRole)
  			player.swap(newRole)
  			deck.append(oldRole)
+ 		
+ 		# swap from another player
  		else:
  			newRole = playerList[int(target)].actualRole
  			playerList[int(target)].swap(oldRole)
@@ -62,7 +76,7 @@ while True:
 
 	if currentOrder == userOrder:
 		action         = raw_input("What do you want to do? ")
-		playerResponse = askResponse(player, action)
+		playerResponse = askResponse(currentPlayer, action)
 	else:
 		print "player", currentPlayer.order, "is thinking..."
 		time.sleep(random.randint(1, 3))
