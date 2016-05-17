@@ -1,26 +1,23 @@
 import random
 
 # initial properties
-initialCoin        = 6
-initialStatus      = "private"
-availableRolesList = ["spy", "bishop", "fool", "inquisitor", "judge", 
-                      "peasant", "peasant", "queen", "king", "witch", 
-                      "cheat", "widow", "thief", "beggar"]
+initialCoin   = 6
+initialStatus = "private"
 
 class Player():	
 	# each player must to be created by giving an actual role
-	def __init__(self, actualRole):
+	def __init__(self, order, availableRolesList, actualRole):
+		self.order         = order # player's order number
 		self.coin          = initialCoin # current holding coins
-		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
-		self.actualRole    = actualRole # actual role identity
 		self.status        = initialStatus # player status (public / private)
+		self.actualRole    = actualRole # actual role identity
+		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
 
-	def swap(self):
-		pass
+	def swap(self, newRole):
+		self.actualRole = newRole
 
 	def glance(self):
-		print "*** Glance: You are the " + self.actualRole + " ! ***"
 		self.suspectedRole = self.actualRole
 
-	def declare(self):
-		pass
+	def announce(self):
+		print "*** Announce! ***"
