@@ -21,6 +21,7 @@ for i in xrange(playersNum):
 	playerList.append(player)
 	deck.remove(randomRole)
 
+# target list, including all player and the deck
 targetList = playerList[:]
 targetList.append("deck")
 
