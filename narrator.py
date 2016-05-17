@@ -28,36 +28,33 @@ def ability(role):
 # Description for game rule
 def rule(rule):
 	ruleDescription = {
-	'setup':'Each player starts with 6 gold coins. The character cards are shuffled, and each player receive one, in front of them. With 4 or 5 players, the remaining cards are placed, face up, in the middle of the table. When all players have taken a good look at the cards, they are all turned over so that they are face down. The character tokens are used to keep track of which character are present in the game. Play the proceeds in a clockwise direction.',
-	'gameTurn':'The first four turn are preparation turn. The player can:\n 1. Swap their card.\n 2. Glance their card.\n\nFrom the fifth turn on, the game begins in earnest and each player, on their turn, must perform, only one action from the following three:\n 1. Swap their card - or not.\n 2. Secretly look at their card.\n 3. Announce their character.\n',
-	'action-swap':'This action allow player to swap their card or not.',
-	'action-glance':'This action allows the player to secretly look at their character card.',
-	'action-announcment':'This action is the main activity of the game, as if allows players to active the powers of the characters. When a player announce they are a character, the other players, in turn, starting from the one on their left and going clockwise, have the option of calling the active players announcement by claiming to be the same character as well.\n\n * If no one else claims to be the character, the player applies the power of the character without revealing their card. Therefore, it is possible to use the power of any character in the game without being that character, even without knowing who you are.\n\n * If one or more other player\'s also claim to be that character, all concerned players(the one who made the annoucement as well as any other claimants) reveal their cards.\n\n * If one of the player is indeed the anounced character, that player immediately uses the characters power(which can happen outside of their turn).\n\nThen, all the other players who had falsely claimed to be the announced character pay a fine of one gold coin to the courthouse. Finally, all players turn over their cards so that they are again facedown.',
-	'endOfGame':'As soon as a player has 13 or more gold coins, the game ends and that player wins. If any player loses their last gold coin, the game ends and the richest player wins. Tied victories are sometimes possible.'}
+	'1':'Setup: Each player starts with 6 gold coins and one card. Play the proceeds in a clockwise direction.',
+	'2':'First four turn: 1. Swap their card. 2. Glance their card.',
+	'3':'Fifth turn: 1. Swap card. 2. Glance their card. 3. Announce their character.',
+	'4':'Swap: To swap their card or not.',
+	'5':'Glance: Secretly look at their character card.',
+	'6':'Announce: When a player announce they are a character, the other players, in turn, starting from the one on their left and going clockwise, have the option of calling the active players announcement by claiming to be the same character as well.',
+	'7':'Announce successfully: If no one else claims to be the character, the player applies the power of the character without revealing their card.',
+	'8':'Multple Claim: If one or more other player\'s also claim to be that character, all concerned players reveal their cards. If one of the player is indeed the anounced character, that player immediately uses the characters power. All the other players who had falsely claimed to be the announced character pay one gold coin to the courthouse.',
+	'9':'End of Game: As soon as a player has 13 or more gold coins, the game ends and that player wins. If any player loses their last gold coin, the game ends and the richest player wins. Tied victories are sometimes possible.'}
 
-	if   rule == "category":
+	if rule == "category":
 		print "Rule Category:"
 		print "1.Setup"
-		print "2.Game Turn"
-		print "3.Action Swap" 
-		print "4.Action Glance" 
-		print "5.Action Announcment" 
-		print "6.End of Game"
+		print "2.First four Turn"
+		print "3.Fifth Turn"
+		print "4.Action Swap" 
+		print "5.Action Glance" 
+		print "6.Announcment" 
+		print "7.Announce successfully"
+		print "8.Multple Claim"
+		print "9.End of Game"
 
-	elif rule == "1":
-		print ruleDescription['setup']
-	elif rule == "2":
-		print ruleDescription['gameTurn']
-	elif rule == "3":
-		print ruleDescription['action-swap']
-	elif rule == '4':
-		print ruleDescription['action-glance']
-	elif rule == '5':
-		print ruleDescription['action-announcment']
-	elif rule == '6':
-		print ruleDescription['endOfGame']
 	else:
-		print "No rule found."
+		try:
+			print ruleDescription[rule]
+		except:
+			print "No rule found."
 
 # test
 print "Game Rule :"
