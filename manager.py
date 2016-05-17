@@ -92,5 +92,6 @@ while True:
 		playerResponse = askResponse(currentPlayer, action)
 	print "=========="
 
+	# for testing purpose
 	if roundCount > 10:
 		break 
