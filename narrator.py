@@ -8,7 +8,7 @@ def ability(role):
 	'Inquisitor':'The inquisitor points at another player. That player must then announce what they believe to be their character, and then reveal their card. If they are wrong, they must pay four gold coins to the inquisitor. If they aren\'t wrong, the power has no effect.', 
 	'Judge':'The judge takes all the coin currently on the courthouse board.',
 	'king':'The king receives three gold coins from the bank.', 
-	'Peasant':'The peasent receives a gold coin from the bank. But if both peasents are revealed during a given turn, they both receive two gold coins from the bank. From unity lies strngth', 
+	'Peasant':'The peasant receives a gold coin from the bank. But if both peasants are revealed during a given turn, they both receive two gold coins from the bank.', 
 	'Queen':'The queen receives two gold coins from the bank.', 
 	'Spy':'The spy secretly looks at their card and another player\'s card before swapping their card or not.',  
 	'Thief':'The thief takes one gold coin from the player to their left and one gold coin from the player to their right.',
@@ -30,13 +30,13 @@ def ability(role):
 def rule(rule):
 	ruleDescription = {
 	'1':'Setup: Each player starts with 6 gold coins and one card. Play the proceeds in a clockwise direction.',
-	'2':'First four turn: 1.Swap their card. 2.Glance their card.',
-	'3':'Fifth turn: 1.Swap card. 2.Glance their card. 3.Announce their character.',
+	'2':'First four turn: 1. Swap their card. 2. Glance their card.',
+	'3':'Fifth turn: 1. Swap card. 2. Glance their card. 3. Announce their character.',
 	'4':'Swap: To swap their card or not.',
 	'5':'Glance: Secretly look at their character card.',
 	'6':'Announce: When a player announce they are a character, the other players, in turn, starting from the one on their left and going clockwise, have the option of calling the active players announcement by claiming to be the same character as well.',
 	'7':'Announce successfully: If no one else claims to be the character, the player applies the power of the character without revealing their card.',
-	'8':'Multple Claim: If one or more other player\'s also claim to be that character, all concerned players reveal their cards. If one of the player is indeed the anounced character, that player immediately uses the characters power. All the other players who had falsely claimed to be the announced character pay one gold coin to the courthouse.',
+	'8':'Multiple Claim: If one or more other player\'s also claim to be that character, all concerned players reveal their cards. If one of the player is indeed the announced character, that player immediately uses the characters power. All the other players who had falsely claimed to be the announced character pay one gold coin to the courthouse.',
 	'9':'End of Game: As soon as a player has 13 or more gold coins, the game ends and that player wins. If any player loses their last gold coin, the game ends and the richest player wins. Tied victories are sometimes possible.'}
 
 	if rule == "category":
@@ -46,9 +46,9 @@ def rule(rule):
 		print "3. Fifth Turn"
 		print "4. Action Swap" 
 		print "5. Action Glance" 
-		print "6. Announcment" 
+		print "6. Announcement" 
 		print "7. Announce successfully"
-		print "8. Multple Claim"
+		print "8. Multiple Claim"
 		print "9. End of Game"
 
 	else:
