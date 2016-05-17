@@ -3,13 +3,13 @@ import random
 import time
 
 # initial properties
-availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch'] # 14 roles available
-availableActionsList = ['swap', 'glance', 'announce'] # three basic actions player can do each round
+availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch']  # 14 roles available
+availableActionsList = ['swap', 'glance', 'announce']  # three basic actions player can do each round
 
-roundCount = 0 # current round number
-courtCoins = 0 # current coins in the court
-deck       = availableRolesList # current roles deck
-playerList = [] # current players list
+roundCount = 0  # current round number
+courtCoins = 0  # current coins in the court
+deck       = availableRolesList  # current roles deck
+playerList = []  # current players list
 
 playersNum = int(raw_input("Please enter the number of players: "))
 userOrder  = random.randint(0, playersNum)
@@ -25,6 +25,7 @@ for i in xrange(playersNum):
 targetList = playerList[:]
 targetList.append("deck")
 
+
 # show the player information
 def showInfo(player):
 	print ">>> player", player.order, "<<<"
@@ -36,50 +37,48 @@ def showInfo(player):
 		print "Role:   unknown"
 	print "==================="
 
+
 # ask response from player
 def askResponse(player, action):
- 	if action == 'swap':
- 		oldRole = player.actualRole
+	if action == 'swap':
+		oldRole = player.actualRole
 
- 		if player.order != userOrder:
- 			targetPlayer = random.choice(targetList)
- 			if targetPlayer == 'deck':
- 				target = targetPlayer
- 			else:
- 				target = targetPlayer.order
- 		else:
- 			target = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
- 		
- 		# swap from deck
- 		if target == 'deck':
- 			print "*** Swap from the deck! ***"
- 			newRole = random.choice(deck)
- 			deck.remove(newRole)
- 			player.swap(newRole)
- 			deck.append(oldRole)
- 		
- 		# swap from another player
- 		else:
- 			print "*** Swap with player", target, "! ***"
- 			newRole = playerList[int(target)].actualRole
- 			playerList[int(target)].swap(oldRole)
- 			player.swap(newRole)
+		if player.order != userOrder:
+			targetPlayer = random.choice(targetList)
+			if targetPlayer == 'deck':
+				target = targetPlayer
+			else:
+				target = targetPlayer.order
+		else:
+			target = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
+		# swap from deck
+		if target == 'deck':
+			print "*** Swap from the deck! ***"
+			newRole = random.choice(deck)
+			deck.remove(newRole)
+			player.swap(newRole)
+			deck.append(oldRole)
+		# swap from another player
+		else:
+			print "*** Swap with player", target, "! ***"
+			newRole = playerList[int(target)].actualRole
+			playerList[int(target)].swap(oldRole)
+			player.swap(newRole)
 
- 	elif action == 'glance':
- 		player.glance()
- 		if player.order != userOrder:
- 			print "*** Glance! ***"
- 		else:
- 			print "*** Glance: you are the", player.actualRole, "! ***" 
- 	
- 	elif action == 'announce':
- 		player.announce()
+	elif action == 'glance':
+		player.glance()
+		if player.order != userOrder:
+			print "*** Glance! ***"
+		else:
+			print "*** Glance: you are the", player.actualRole, "! ***"
+	elif action == 'announce':
+		player.announce()
 
 # start the game
 while True:
 	roundCount += 1
 	print "Round", roundCount
-	currentOrder  = (roundCount-1) % len(playerList)
+	currentOrder  = (roundCount - 1) % len(playerList)
 	currentPlayer = playerList[currentOrder]
 
 	if currentOrder == userOrder:
@@ -94,4 +93,4 @@ while True:
 
 	# for testing purpose
 	if roundCount > 10:
-		break 
+		break

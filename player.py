@@ -4,14 +4,15 @@ import random
 initialCoin   = 6
 initialStatus = "private"
 
-class Player():	
+
+class Player():
 	# each player must to be created by giving an actual role
 	def __init__(self, order, availableRolesList, actualRole):
-		self.order         = order # player's order number
-		self.coin          = initialCoin # current holding coins
-		self.status        = initialStatus # player status (public / private)
-		self.actualRole    = actualRole # actual role identity
-		self.suspectedRole = random.choice(availableRolesList) # suspected role identity
+		self.order         = order  # player's order number
+		self.coin          = initialCoin  # current holding coins
+		self.status        = initialStatus  # player status (public / private)
+		self.actualRole    = actualRole  # actual role identity
+		self.suspectedRole = random.choice(availableRolesList)  # suspected role identity
 
 	def swap(self, newRole):
 		self.actualRole = newRole
