@@ -15,7 +15,8 @@ def ability(role):
 	'Widow':'The widow receives coins from the bank to bring her fortune up to 10 coins in total.', 
 	'Witch':'The witch can swap all of her fortune with that of another player of their choice.'}
 
-	if role == "blank": # An option for list every character's ability.
+	# An option for list every character's ability.
+	if role == "blank": 
 		for key,value in roleDescription.items():
 			print "["+key+"]" 
 			print value
@@ -29,8 +30,8 @@ def ability(role):
 def rule(rule):
 	ruleDescription = {
 	'1':'Setup: Each player starts with 6 gold coins and one card. Play the proceeds in a clockwise direction.',
-	'2':'First four turn: 1. Swap their card. 2. Glance their card.',
-	'3':'Fifth turn: 1. Swap card. 2. Glance their card. 3. Announce their character.',
+	'2':'First four turn: 1.Swap their card. 2.Glance their card.',
+	'3':'Fifth turn: 1.Swap card. 2.Glance their card. 3.Announce their character.',
 	'4':'Swap: To swap their card or not.',
 	'5':'Glance: Secretly look at their character card.',
 	'6':'Announce: When a player announce they are a character, the other players, in turn, starting from the one on their left and going clockwise, have the option of calling the active players announcement by claiming to be the same character as well.',
@@ -40,15 +41,15 @@ def rule(rule):
 
 	if rule == "category":
 		print "Rule Category:"
-		print "1.Setup"
-		print "2.First four Turn"
-		print "3.Fifth Turn"
-		print "4.Action Swap" 
-		print "5.Action Glance" 
-		print "6.Announcment" 
-		print "7.Announce successfully"
-		print "8.Multple Claim"
-		print "9.End of Game"
+		print "1. Setup"
+		print "2. First four Turn"
+		print "3. Fifth Turn"
+		print "4. Action Swap" 
+		print "5. Action Glance" 
+		print "6. Announcment" 
+		print "7. Announce successfully"
+		print "8. Multple Claim"
+		print "9. End of Game"
 
 	else:
 		try:
@@ -65,12 +66,16 @@ print "->"
 input  = raw_input()
 option = input.split() # Get the option of ability or rule
 
-if option[0] == "ability": # An option of ability
-	if len(option) == 1: # An option of all the character's ability. 
+# An option of ability
+if option[0] == "ability": 
+	# An option of all the character's ability.
+	if len(option) == 1:  
 		ability("blank")
-	else: # An option of specific character's ability.
+	# An option of specific character's ability.
+	else: 
 		ability(option[1])
-elif option[0] == "rule": # An option of rule
+# An option of rule
+elif option[0] == "rule": 
 	rule("category")
 	print "Enter a number: " # Enter a number to get a specific rule description.. 
 	ruleOption = raw_input()
