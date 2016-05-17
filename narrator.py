@@ -58,7 +58,7 @@ def rule(rule):
 			print "No rule found."
 
 # test
-print "Game Rule :"
+print "Game Rule:"
 print "ability: for all the ability description."
 print "ability character: for specific character description." 
 print "rule: for game rule description."
