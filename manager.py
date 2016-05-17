@@ -40,6 +40,7 @@ def showInfo(player):
 
 # ask response from player
 def askResponse(player, action):
+	# swap cards
 	if action == 'swap':
 		oldRole = player.actualRole
 
@@ -51,6 +52,7 @@ def askResponse(player, action):
 				target = targetPlayer.order
 		else:
 			target = raw_input('Who do you want to swap with (enter "deck" / player order number)? ')
+
 		# swap from deck
 		if target == 'deck':
 			print "*** Swap from the deck! ***"
@@ -58,6 +60,7 @@ def askResponse(player, action):
 			deck.remove(newRole)
 			player.swap(newRole)
 			deck.append(oldRole)
+
 		# swap from another player
 		else:
 			print "*** Swap with player", target, "! ***"
@@ -65,12 +68,15 @@ def askResponse(player, action):
 			playerList[int(target)].swap(oldRole)
 			player.swap(newRole)
 
+	# glance card
 	elif action == 'glance':
 		player.glance()
 		if player.order != userOrder:
 			print "*** Glance! ***"
 		else:
 			print "*** Glance: you are the", player.actualRole, "! ***"
+
+	# announce role's ability
 	elif action == 'announce':
 		player.announce()
 
