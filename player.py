@@ -20,5 +20,5 @@ class Player():
 	def glance(self):
 		self.suspectedRole = self.actualRole
 
-	def announce(self):
-		print "*** Announce! ***"
+	def announce(self, claimedIdentity):
+		print "used", claimedIdentity, "ability"

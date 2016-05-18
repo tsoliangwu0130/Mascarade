@@ -8,8 +8,10 @@ availableActionsList = ['swap', 'glance', 'announce']  # three basic actions pla
 
 roundCount = 0  # current round number
 courtCoins = 0  # current coins in the court
-deck       = availableRolesList[:]  # current roles deck
 playerList = []  # current players list
+
+deck             = availableRolesList[:]  # current roles deck
+possibleRoleList = availableRolesList[:]  # current possible role list
 
 playersNum = int(raw_input("Please enter the number of players: "))
 userOrder  = random.randint(0, playersNum)
@@ -24,6 +26,8 @@ for i in xrange(playersNum):
 # target list, including all player and the deck
 targetList = playerList[:]
 targetList.append("deck")
+
+playerStatusList = ["private"] * len(playerList)  # current players status
 
 
 # show the player information
@@ -59,6 +63,7 @@ def askResponse(player, action):
 			newRole = random.choice(deck)
 			deck.remove(newRole)
 			player.swap(newRole)
+			player.suspectedRole = random.choice(possibleRoleList)
 			deck.append(oldRole)
 
 		# swap from another player
@@ -66,7 +71,9 @@ def askResponse(player, action):
 			print "*** Swap with player", target, "! ***"
 			newRole = playerList[int(target)].actualRole
 			playerList[int(target)].swap(oldRole)
+			playerList[int(target)].suspectedRole = random.choice(possibleRoleList)
 			player.swap(newRole)
+			player.suspectedRole = random.choice(possibleRoleList)
 
 	# glance card
 	elif action == 'glance':
@@ -78,7 +85,17 @@ def askResponse(player, action):
 
 	# announce role's ability
 	elif action == 'announce':
-		player.announce()
+		print "*** Announce! ***"
+
+		if player.order == userOrder:
+			claimedIdentity = raw_input("Who are you? ")
+		else:
+			claimedIdentity = random.choice(possibleRoleList)
+
+		print "*** Player", player.order, "announce! >>>", claimedIdentity, "<<<"
+
+		player.announce(claimedIdentity)
+
 
 # start the game
 while True:
