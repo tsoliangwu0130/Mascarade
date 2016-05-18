@@ -85,7 +85,15 @@ def askResponse(player, action):
 
 	# announce role's ability
 	elif action == 'announce':
-		player.announce()
+		print "*** Announce! ***"
+
+		if player.order == userOrder:
+			claimedIdentity = raw_input("Who are you? ")
+		else:
+			claimedIdentity = random.choice(possibleRoleList)
+
+		player.announce(claimedIdentity)
+
 
 # start the game
 while True:
