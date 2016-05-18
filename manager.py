@@ -6,9 +6,9 @@ import time
 availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch']  # 14 roles available
 availableActionsList = ['swap', 'glance', 'announce']  # three basic actions player can do each round
 
-roundCount   = 0  # current round number
-courtCoins   = 0  # current coins in the court
-playerList   = []  # current players list
+roundCount = 0  # current round number
+courtCoins = 0  # current coins in the court
+playerList = []  # current players list
 
 deck             = availableRolesList[:]  # current roles deck
 possibleRoleList = availableRolesList[:]  # current possible role list
