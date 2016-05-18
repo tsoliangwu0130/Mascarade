@@ -92,6 +92,8 @@ def askResponse(player, action):
 		else:
 			claimedIdentity = random.choice(possibleRoleList)
 
+		print "*** Player", player.order, "announce! >>>", claimedIdentity, "<<<"
+
 		player.announce(claimedIdentity)
 
 

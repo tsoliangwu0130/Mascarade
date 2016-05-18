@@ -21,4 +21,4 @@ class Player():
 		self.suspectedRole = self.actualRole
 
 	def announce(self, claimedIdentity):
-		print "using", claimedIdentity, "ability"
+		print "used", claimedIdentity, "ability"
