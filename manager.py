@@ -1,6 +1,8 @@
 from player import Player
 import random
 import time
+import signal
+import sys
 
 # initial properties
 availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch']  # 14 roles available
@@ -28,6 +30,22 @@ targetList = playerList[:]
 targetList.append("deck")
 
 playerStatusList = ["private"] * len(playerList)  # current players status
+
+
+# interrupter for interrupt timer
+def interrupter(signum, frame):
+	print "interrupt!"
+	sys.exit()
+
+
+# time limited input
+def timerInput():
+	try:
+		output = raw_input()
+		return output
+	# timeout
+	except SystemExit:
+		return
 
 
 # show the player information
@@ -93,6 +111,14 @@ def askResponse(player, action):
 			claimedIdentity = random.choice(possibleRoleList)
 
 		print "*** Player", player.order, "announce! >>>", claimedIdentity, "<<<"
+
+		# set alarm
+		signal.signal(signal.SIGALRM, interrupter)
+		signal.alarm(5)
+
+		print "Do you want to challenge this player?"
+		challenge = timerInput()
+		signal.alarm(0)  # disable alarm while successfully get response
 
 		player.announce(claimedIdentity)
 
