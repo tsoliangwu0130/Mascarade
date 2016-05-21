@@ -126,9 +126,15 @@ def askResponse(player, action):
 
 		while nextPlayerOrder != player.order:
 			if nextPlayerOrder == userOrder:
-				print "Do you want to challenge this player?"
+				print "Do you want to challenge this player (Y/N)?"
 				challenge = timerInput()
-				nextPlayerOrder += 1
+				if challenge == "Y":
+					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
+					break
+				if nextPlayerOrder == len(playerList) - 1:
+					nextPlayerOrder = 0
+				else:
+					nextPlayerOrder += 1
 			else:
 				if playerList[nextPlayerOrder].suspectedRole == claimedIdentity:
 					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
