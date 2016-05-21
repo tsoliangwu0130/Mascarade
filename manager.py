@@ -34,7 +34,7 @@ playerStatusList = ["private"] * len(playerList)  # current players status
 
 # interrupter for interrupt timer
 def interrupter(signum, frame):
-	print "interrupt!"
+	print "time out!"
 	sys.exit()
 
 
@@ -105,6 +105,7 @@ def askResponse(player, action):
 	elif action == 'announce':
 		print "*** Announce! ***"
 
+		# announcing roles
 		if player.order == userOrder:
 			claimedIdentity = raw_input("Who are you? ")
 		else:
@@ -112,14 +113,33 @@ def askResponse(player, action):
 
 		print "*** Player", player.order, "announce! >>>", claimedIdentity, "<<<"
 
-		# set alarm
-		signal.signal(signal.SIGALRM, interrupter)
+		# wait 5 seconds for challenges from other players
+		signal.signal(signal.SIGALRM, interrupter)  # set alarm
 		signal.alarm(5)
 
-		print "Do you want to challenge this player?"
-		challenge = timerInput()
-		signal.alarm(0)  # disable alarm while successfully get response
+		# if there are other players who's suspectedRole are as same as the announcement, challenge it
+		# the manager only accpet the closest play's challenge if there are more than one player challenge
+		if player.order == len(playerList) - 1:
+			nextPlayerOrder = 0
+		else:
+			nextPlayerOrder = player.order + 1
 
+		while nextPlayerOrder != player.order:
+			if nextPlayerOrder == userOrder:
+				print "Do you want to challenge this player?"
+				challenge = timerInput()
+				nextPlayerOrder += 1
+			else:
+				if playerList[nextPlayerOrder].suspectedRole == claimedIdentity:
+					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
+					break
+				else:
+					if nextPlayerOrder == len(playerList) - 1:
+						nextPlayerOrder = 0
+					else:
+						nextPlayerOrder += 1
+
+		signal.alarm(0)  # disable alarm while successfully get response
 		player.announce(claimedIdentity)
 
 
