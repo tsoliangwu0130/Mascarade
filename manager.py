@@ -5,8 +5,8 @@ import signal
 import sys
 
 # initial properties
-availableRolesList   = ['beggar', 'bishop', 'cheat', 'fool', 'inquisitor', 'judge', 'king', 'peasant', 'peasant', 'queen', 'spy', 'thief', 'widow', 'witch']  # 14 roles available
-availableActionsList = ['swap', 'glance', 'announce']  # three basic actions player can do each round
+availableRolesList   = ['Beggar', 'Bishop', 'Cheat', 'Fool', 'Inquisitor', 'Judge', 'King', 'Peasant', 'Peasant', 'Queen', 'Spy', 'Thief', 'Widow', 'Witch']  # 14 roles available
+availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
 
 roundCount = 0  # current round number
 courtCoins = 0  # current coins in the court
@@ -63,7 +63,7 @@ def showInfo(player):
 # ask response from player
 def askResponse(player, action):
 	# swap cards
-	if action == 'swap':
+	if action == 'Swap':
 		oldRole = player.actualRole
 
 		if player.order != userOrder:
@@ -94,7 +94,7 @@ def askResponse(player, action):
 			player.suspectedRole = random.choice(possibleRoleList)
 
 	# glance card
-	elif action == 'glance':
+	elif action == 'Glance':
 		player.glance()
 		if player.order != userOrder:
 			print "*** Glance! ***"
@@ -102,7 +102,7 @@ def askResponse(player, action):
 			print "*** Glance: you are the", player.actualRole, "! ***"
 
 	# announce role's ability
-	elif action == 'announce':
+	elif action == 'Announce':
 		print "*** Announce! ***"
 
 		# announcing roles
