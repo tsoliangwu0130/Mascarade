@@ -57,29 +57,3 @@ def rule(rule):
 			print ruleDescription[rule]
 		except:
 			print "No rule found."
-
-# test
-print "Game Rule:"
-print "ability: for all the ability description."
-print "ability character: for specific character description."
-print "rule: for game rule description."
-print "->"
-input  = raw_input()
-option = input.split()  # Get the option of ability or rule
-
-# An option of ability
-if option[0] == "ability":
-	# An option of all the character's ability.
-	if len(option) == 1:
-		ability("blank")
-	# An option of specific character's ability.
-	else:
-		ability(option[1])
-# An option of rule
-elif option[0] == "rule":
-	rule("category")
-	print "Enter a number: "  # Enter a number to get a specific rule description..
-	ruleOption = raw_input()
-	rule(ruleOption)
-else:
-	print "Please enter a valid option."
