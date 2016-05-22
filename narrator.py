@@ -7,7 +7,7 @@ def ability(role):
 		'Fool': 'The fool receives a gold coin from the bank and swaps-or not - the cards of two other players, under the table and without looking at them.',
 		'Inquisitor': 'The inquisitor points at another player. That player must then announce what they believe to be their character, and then reveal their card. If they are wrong, they must pay four gold coins to the inquisitor. If they aren\'t wrong, the power has no effect.',
 		'Judge': 'The judge takes all the coin currently on the courthouse board.',
-		'king': 'The king receives three gold coins from the bank.',
+		'King': 'The king receives three gold coins from the bank.',
 		'Peasant': 'The peasant receives a gold coin from the bank. But if both peasants are revealed during a given turn, they both receive two gold coins from the bank.',
 		'Queen': 'The queen receives two gold coins from the bank.',
 		'Spy': 'The spy secretly looks at their card and another player\'s card before swapping their card or not.',
