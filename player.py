@@ -22,3 +22,10 @@ class Player():
 
 	def announce(self, claimedIdentity):
 		print "used", claimedIdentity, "ability"
+
+		if claimedIdentity == "king":
+			print "You are the king. Obtain 3 coins from the bank."
+			self.coin += 3
+		if claimedIdentity == "Queen":
+			print "You are the king. Obtain 2 coins from the bank."
+			self.coin += 2
