@@ -15,16 +15,7 @@ def ability(role):
 		'Widow': 'The widow receives coins from the bank to bring her fortune up to 10 coins in total.',
 		'Witch': 'The witch can swap all of her fortune with that of another player of their choice.'}
 
-	# An option for list every character's ability.
-	if role == "blank":
-		for key, value in roleDescription.items():
-			print "[" + key + "]"
-			print value
-	else:
-		try:
-			print roleDescription[role]
-		except:
-			print "No character found."
+	return roleDescription[role]
 
 
 # Description for game rule
