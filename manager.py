@@ -16,7 +16,7 @@ deck             = availableRolesList[:]  # current roles deck
 possibleRoleList = availableRolesList[:]  # current possible role list
 
 playersNum = int(raw_input("Please enter the number of players: "))
-userOrder  = random.randint(0, playersNum)
+userOrder  = random.randint(0, playersNum - 1)
 print "Your playing order is", userOrder
 
 for i in xrange(playersNum):
