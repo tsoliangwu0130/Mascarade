@@ -1,4 +1,5 @@
 import random
+import narrator
 
 # initial properties
 initialCoin   = 6
@@ -21,11 +22,10 @@ class Player():
 		self.suspectedRole = self.actualRole
 
 	def announce(self, claimedIdentity):
-		print "used", claimedIdentity, "ability"
+		print ">>> Used", claimedIdentity, "ability <<<"
+		print narrator.ability(claimedIdentity)
 
-		if claimedIdentity == "king":
-			print "You are the king. Obtain 3 coins from the bank."
+		if claimedIdentity == "King":
 			self.coin += 3
 		if claimedIdentity == "Queen":
-			print "You are the king. Obtain 2 coins from the bank."
 			self.coin += 2
