@@ -155,7 +155,7 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Bishop":
-			maxCoin         = 0
+			maxCoin         = player.coin
 			richPlayerCount = 0
 			richestPlayers  = []
 
@@ -183,8 +183,9 @@ def askResponse(player, action):
 					richestPlayer      = richestPlayers[richestPlayerOrder]
 				else:
 					richestPlayer = random.choice(richestPlayers)
-			elif len(richestPlayers) == 0:
+			elif len(richestPlayers) == 1:
 				print "You are the richest player!"
+				richestPlayer = richestPlayers[0]
 			else:
 				richestPlayer = richestPlayers[0]
 
