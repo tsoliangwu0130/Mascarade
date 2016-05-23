@@ -218,7 +218,29 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Thief":
-			pass
+			stolenCoins = 0
+			# find the left player and the right player
+			if player.order == 0:
+				leftPlayerOrder  = len(playerList) - 1
+				rightPlayerOrder = player.order + 1
+			elif player.order == len(playerList) - 1:
+				leftPlayerOrder  = player.order - 1
+				rightPlayerOrder = 0
+			else:
+				leftPlayerOrder  = player.order - 1
+				rightPlayerOrder = player.order + 1
+
+			# if the player doesn't have any coin, get 0 coin
+			if playerList[leftPlayerOrder].coin > 0:
+				stolenCoins += 1
+				playerList[leftPlayerOrder].coin -= 1
+				print ">>> Steal 1 coin from player", leftPlayerOrder, "<<<"
+			if playerList[rightPlayerOrder].coin > 0:
+				stolenCoins += 1
+				playerList[rightPlayerOrder].coin -= 1
+				print ">>> Steal 1 coin from player", rightPlayerOrder, "<<<"
+
+			player.coin += stolenCoins
 
 		if claimedIdentity == "Widow":
 			player.coin = 10
