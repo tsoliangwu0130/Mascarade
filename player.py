@@ -25,7 +25,41 @@ class Player():
 		print ">>> Used", claimedIdentity, "ability <<<"
 		print narrator.ability(claimedIdentity)
 
+		if claimedIdentity == "Beggar":
+			pass
+
+		if claimedIdentity == "Bishop":
+			pass
+
+		if claimedIdentity == "Cheat":
+			pass
+
+		if claimedIdentity == "Fool":
+			pass
+
+		if claimedIdentity == "Inquisitor":
+			pass
+
+		if claimedIdentity == "Judge":
+			pass
+
 		if claimedIdentity == "King":
 			self.coin += 3
+
+		if claimedIdentity == "Peasant":
+			self.coin += 1
+
 		if claimedIdentity == "Queen":
 			self.coin += 2
+
+		if claimedIdentity == "Spy":
+			pass
+
+		if claimedIdentity == "Thief":
+			pass
+
+		if claimedIdentity == "Widow":
+			self.coin = 10
+
+		if claimedIdentity == "Witch":
+			pass
