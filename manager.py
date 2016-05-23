@@ -173,15 +173,18 @@ def askResponse(player, action):
 				# print all richest players
 				print "There are more than one player are richest: "
 				for richPlayer in richestPlayers:
-					richPlayerCount += 1
-					sys.stdout.write("  " + str(richPlayerCount) + ". Player " + str(richPlayer.order))
-					print ""
+					if richPlayer.order != player.order:
+						richPlayerCount += 1
+						sys.stdout.write("  " + str(richPlayerCount) + ". Player " + str(richPlayer.order))
+						print ""
 
 				if player.order == userOrder:
 					richestPlayerOrder = int(raw_input("Which player do you want to take 2 coins from? ")) - 1
 					richestPlayer      = richestPlayers[richestPlayerOrder]
 				else:
 					richestPlayer = random.choice(richestPlayers)
+			elif len(richestPlayers) == 0:
+				print "You are the richest player!"
 			else:
 				richestPlayer = richestPlayers[0]
 
