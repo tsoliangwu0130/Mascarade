@@ -62,6 +62,8 @@ def showInfo(player):
 
 # ask response from player
 def askResponse(player, action):
+	global courtCoins
+
 	# swap cards
 	if action == 'Swap':
 		oldRole = player.actualRole
@@ -165,7 +167,8 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Judge":
-			pass
+			player.coin += courtCoins
+			courtCoins  = 0
 
 		if claimedIdentity == "King":
 			player.coin += 3
