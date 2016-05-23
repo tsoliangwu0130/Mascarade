@@ -155,7 +155,38 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Bishop":
-			pass
+			maxCoin         = 0
+			richPlayerCount = 0
+			richestPlayers  = []
+
+			# get the max coin
+			for tempPlayer in playerList:
+				if tempPlayer.coin > maxCoin:
+					maxCoin = tempPlayer.coin
+
+			# get the richest player(s)
+			for tempPlayer in playerList:
+				if tempPlayer.coin >= maxCoin:
+					richestPlayers.append(tempPlayer)
+
+			if len(richestPlayers) > 1:
+				# print all richest players
+				print "There are more than one player are richest: "
+				for richPlayer in richestPlayers:
+					richPlayerCount += 1
+					sys.stdout.write("  " + str(richPlayerCount) + ". Player " + str(richPlayer.order))
+					print ""
+
+				if player.order == userOrder:
+					richestPlayerOrder = int(raw_input("Which player do you want to take 2 coins from? ")) - 1
+					richestPlayer      = richestPlayers[richestPlayerOrder]
+				else:
+					richestPlayer = random.choice(richestPlayers)
+			else:
+				richestPlayer = richestPlayers[0]
+
+			player.coin        += 2
+			richestPlayer.coin -= 2
 
 		if claimedIdentity == "Cheat":
 			pass
