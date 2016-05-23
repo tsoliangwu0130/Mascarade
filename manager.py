@@ -148,6 +148,46 @@ def askResponse(player, action):
 		signal.alarm(0)  # disable alarm while successfully get response
 		player.announce(claimedIdentity)
 
+		# role abilityies
+		if claimedIdentity == "Beggar":
+			pass
+
+		if claimedIdentity == "Bishop":
+			pass
+
+		if claimedIdentity == "Cheat":
+			pass
+
+		if claimedIdentity == "Fool":
+			pass
+
+		if claimedIdentity == "Inquisitor":
+			pass
+
+		if claimedIdentity == "Judge":
+			pass
+
+		if claimedIdentity == "King":
+			player.coin += 3
+
+		if claimedIdentity == "Peasant":
+			pass
+
+		if claimedIdentity == "Queen":
+			player.coin += 2
+
+		if claimedIdentity == "Spy":
+			pass
+
+		if claimedIdentity == "Thief":
+			pass
+
+		if claimedIdentity == "Widow":
+			player.coin = 10
+
+		if claimedIdentity == "Witch":
+			pass
+
 
 # start the game
 while True:
@@ -164,6 +204,7 @@ while True:
 		time.sleep(random.randint(1, 3))
 		action         = random.choice(availableActionsList)
 		playerResponse = askResponse(currentPlayer, action)
+	showInfo(currentPlayer)
 	print "=========="
 
 	# for testing purpose
