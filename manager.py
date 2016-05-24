@@ -6,8 +6,8 @@ import sys
 
 # initial properties
 availableRolesList   = ['Beggar', 'Bishop', 'Cheat', 'Fool', 'Inquisitor', 'Judge', 'King', 'Peasant', 'Peasant', 'Queen', 'Spy', 'Thief', 'Widow', 'Witch']  # 14 roles available
-# availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
-availableActionsList = ['Announce']
+availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
+
 
 roundCount = 0  # current round number
 courtCoins = 0  # current coins in the court
