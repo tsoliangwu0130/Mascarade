@@ -121,7 +121,7 @@ def askResponse(player, action):
 		signal.alarm(5)
 
 		# if there are other players who's suspectedRole are as same as the announcement, challenge it
-		# the manager only accpet the closest play's challenge if there are more than one player challenge
+		# the manager only accept the challenge of the closest play if there are more than one player challenge
 		if player.order == len(playerList) - 1:
 			nextPlayerOrder = 0
 		else:
@@ -151,7 +151,7 @@ def askResponse(player, action):
 		signal.alarm(0)  # disable alarm while successfully get response
 		player.announce(claimedIdentity)
 
-		# role abilityies
+		# role abilities
 		if claimedIdentity == "Beggar":
 			pass
 
@@ -276,7 +276,7 @@ def askResponse(player, action):
 				target = int(raw_input("Which player's fortune do you want to swap with? "))
 				targetPlayer = playerList[target]
 			else:
-				# get the list of player who has more coin
+				# get the list of player who have more coin
 				for moreCoinPlayer in playerList:
 					if moreCoinPlayer.order != player.order and moreCoinPlayer.coin >= player.coin:
 						moreCoinPlayers.append(moreCoinPlayer)
