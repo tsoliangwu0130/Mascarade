@@ -224,7 +224,11 @@ def askResponse(player, action):
 			player.coin = 10
 
 		if claimedIdentity == "Witch":
-			target = int(raw_input("Which player's fortune do you want to swap with? "))
+			if player.order == userOrder:
+				target = int(raw_input("Which player's fortune do you want to swap with? "))
+			else:
+				target = int(random.randint(0, playersNum))
+
 			print "Swap with player", target
 			player.coin, playerList[target].coin = playerList[target].coin, player.coin
 			print ">>> Swap the fortune with player", target, "<<<"
@@ -249,5 +253,5 @@ while True:
 	print "=========="
 
 	# for testing purpose
-	if roundCount > 10:
+	if roundCount > 30:
 		break
