@@ -229,16 +229,16 @@ def askResponse(player, action):
 
 			if player.order == userOrder:
 				target = int(raw_input("Which player's fortune do you want to swap with? "))
+				targetPlayer = playerList[target]
 			else:
 				# get the list of player who has more coin
 				for moreCoinPlayer in playerList:
 					if moreCoinPlayer.order != player.order and moreCoinPlayer.coin >= player.coin:
 						moreCoinPlayers.append(moreCoinPlayer)
-				target = (random.choice(moreCoinPlayers)).order
-				# target = targetPlayer.order
+				targetPlayer = random.choice(moreCoinPlayers)
 
 			print "Swap with player", target
-			player.coin, playerList[target].coin = playerList[target].coin, player.coin
+			player.coin, targetPlayer.coin = targetPlayer.coin, player.coin
 			print ">>> Swap the fortune with player", target, "<<<"
 
 
