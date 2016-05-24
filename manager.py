@@ -6,7 +6,8 @@ import sys
 
 # initial properties
 availableRolesList   = ['Beggar', 'Bishop', 'Cheat', 'Fool', 'Inquisitor', 'Judge', 'King', 'Peasant', 'Peasant', 'Queen', 'Spy', 'Thief', 'Widow', 'Witch']  # 14 roles available
-availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
+# availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
+availableActionsList = ['Announce']
 
 roundCount = 0  # current round number
 courtCoins = 0  # current coins in the court
@@ -224,10 +225,18 @@ def askResponse(player, action):
 			player.coin = 10
 
 		if claimedIdentity == "Witch":
+			moreCoinPlayers = []
+
 			if player.order == userOrder:
 				target = int(raw_input("Which player's fortune do you want to swap with? "))
 			else:
-				target = int(random.randint(0, playersNum))
+				# get the list of player who has more coin
+				for moreCoinPlayer in playerList:
+					if moreCoinPlayer.order != player.order:
+						if moreCoinPlayer.coin >= player.coin:
+							moreCoinPlayers.append(moreCoinPlayer)
+				targetPlayer = random.choice(moreCoinPlayers)
+				target = targetPlayer.order
 
 			print "Swap with player", target
 			player.coin, playerList[target].coin = playerList[target].coin, player.coin
@@ -253,5 +262,5 @@ while True:
 	print "=========="
 
 	# for testing purpose
-	if roundCount > 30:
+	if roundCount > 40:
 		break
