@@ -4,7 +4,7 @@ def ability(role):
 		'Beggar': 'The beggar has no ability',
 		'Bishop': 'The bishop takes two gold coins from the richest of the other players. In case of a tie, the bishop chooses from which player the two coins are taken.',
 		'Cheat': 'If they have 10 gold coins or more, the cheat wins the game.',
-		'Fool': 'The fool receives a gold coin from the bank and swaps-or not - the cards of two other players, under the table and without looking at them.',
+		'Fool': 'The fool receives a gold coin from the bank and swaps or not the cards of two other players, under the table and without looking at them.',
 		'Inquisitor': 'The inquisitor points at another player. That player must then announce what they believe to be their character, and then reveal their card. If they are wrong, they must pay four gold coins to the inquisitor. If they aren\'t wrong, the power has no effect.',
 		'Judge': 'The judge takes all the coin currently on the courthouse board.',
 		'King': 'The king receives three gold coins from the bank.',
