@@ -227,6 +227,7 @@ def askResponse(player, action):
 			target = int(raw_input("Which player's fortune do you want to swap with? "))
 			print "Swap with player", target
 			player.coin, playerList[target].coin = playerList[target].coin, player.coin
+			print ">>> Swap the fortune with player", target, "<<<"
 
 
 # start the game
