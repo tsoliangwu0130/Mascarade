@@ -232,11 +232,10 @@ def askResponse(player, action):
 			else:
 				# get the list of player who has more coin
 				for moreCoinPlayer in playerList:
-					if moreCoinPlayer.order != player.order:
-						if moreCoinPlayer.coin >= player.coin:
-							moreCoinPlayers.append(moreCoinPlayer)
-				targetPlayer = random.choice(moreCoinPlayers)
-				target = targetPlayer.order
+					if moreCoinPlayer.order != player.order and moreCoinPlayer.coin >= player.coin:
+						moreCoinPlayers.append(moreCoinPlayer)
+				target = (random.choice(moreCoinPlayers)).order
+				# target = targetPlayer.order
 
 			print "Swap with player", target
 			player.coin, playerList[target].coin = playerList[target].coin, player.coin
