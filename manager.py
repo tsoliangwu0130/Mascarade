@@ -196,7 +196,30 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Fool":
-			pass
+			if player.order == userOrder:
+				print "Assign the orders of two players to swap their roles (or enter N not to swap):"
+				fstTarget = raw_input("Target 1: ")
+				sndTarget = raw_input("Target 2: ")
+			else:
+				# randomly pick two players without repeat
+				fstTarget = random.choice(playerList).order
+				sndTarget = random.choice(playerList).order
+				while fstTarget == sndTarget:
+					sndTarget = random.choice(playerList).order
+
+			if fstTarget == "N" or sndTarget == "N":
+				print ">>> Not swap anyone! <<<"
+				pass
+			else:
+				fstTarget = int(fstTarget)
+				sndTarget = int(sndTarget)
+				playerList[fstTarget].actualRole, playerList[sndTarget].actualRole = playerList[sndTarget].actualRole, playerList[fstTarget].actualRole
+				print ">>> Swap player", fstTarget, "and player", sndTarget, "<<<"
+				# after swapping roles, players should re-guess their actual identities
+				playerList[fstTarget].suspectedRole = random.choice(possibleRoleList)
+				playerList[sndTarget].suspectedRole = random.choice(possibleRoleList)
+
+			player.coin += 1
 
 		if claimedIdentity == "Inquisitor":
 			pass
