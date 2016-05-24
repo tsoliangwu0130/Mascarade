@@ -226,7 +226,7 @@ def askResponse(player, action):
 		if claimedIdentity == "Witch":
 			target = int(raw_input("Which player's fortune do you want to swap with? "))
 			print "Swap with player", target
-			player.coin, playerList[int(target)].coin = playerList[int(target)].coin, player.coin
+			player.coin, playerList[target].coin = playerList[target].coin, player.coin
 
 
 # start the game
