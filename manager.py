@@ -61,6 +61,24 @@ def showInfo(player):
 	print "==================="
 
 
+# get the current richest players
+def getRichestPlayers():
+	maxCoin         = 0
+	richestPlayers  = []
+
+	# get the max coin
+	for tempPlayer in playerList:
+		if tempPlayer.coin > maxCoin:
+			maxCoin = tempPlayer.coin
+
+	# get the richest player(s)
+	for tempPlayer in playerList:
+		if tempPlayer.coin >= maxCoin:
+			richestPlayers.append(tempPlayer)
+
+	return richestPlayers
+
+
 # ask response from player
 def askResponse(player, action):
 	global courtCoins
@@ -156,19 +174,8 @@ def askResponse(player, action):
 			pass
 
 		if claimedIdentity == "Bishop":
-			maxCoin         = player.coin
 			richPlayerCount = 0
-			richestPlayers  = []
-
-			# get the max coin
-			for tempPlayer in playerList:
-				if tempPlayer.coin > maxCoin:
-					maxCoin = tempPlayer.coin
-
-			# get the richest player(s)
-			for tempPlayer in playerList:
-				if tempPlayer.coin >= maxCoin:
-					richestPlayers.append(tempPlayer)
+			richestPlayers  = getRichestPlayers()
 
 			if len(richestPlayers) > 1:
 				# print all richest players
