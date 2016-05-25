@@ -289,9 +289,8 @@ def askResponse(player, action):
 						moreCoinPlayers.append(moreCoinPlayer)
 				targetPlayer = random.choice(moreCoinPlayers)
 
-			print "Swap with player", target
 			player.coin, targetPlayer.coin = targetPlayer.coin, player.coin
-			print ">>> Swap the fortune with player", target, "<<<"
+			print ">>> Swap the fortune with player", targetPlayer.order, "<<<"
 
 
 # start the game
