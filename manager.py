@@ -246,7 +246,32 @@ def askResponse(player, action):
 			player.coin += 2
 
 		if claimedIdentity == "Spy":
-			pass
+			decisionList = ["Y", "N"]
+			if player.order == userOrder:
+				print "Which two player do you wnat to look at and swap?"
+				fstTarget = int(raw_input("Target 1: "))
+				print playerList[fstTarget].actualRole
+				sndTarget = int(raw_input("Target 2: "))
+				print playerList[sndTarget].actualRole
+				decision = raw_input("Do you want to swap two player's card? (Y/N)")
+			else:
+				fstTarget = random.choice(playerList).order
+				sndTarget = random.choice(playerList).order
+				while fstTarget == sndTarget:
+					sndTarget = random.choice(playerList).order
+				fstTarget = int(fstTarget)
+				sndTarget = int(sndTarget)
+				decision = random.choice(decisionList)
+
+			if decision == "N":
+				print ">>> Not swap anyone! <<<"
+				pass
+			else:
+				playerList[fstTarget].actualRole, playerList[sndTarget].actualRole = playerList[sndTarget].actualRole, playerList[fstTarget].actualRole
+				print ">>> Swap player", fstTarget, "and player", sndTarget, "<<<"
+				# after swapping roles, players should re-guess their actual identities
+				playerList[fstTarget].suspectedRole = random.choice(possibleRoleList)
+				playerList[sndTarget].suspectedRole = random.choice(possibleRoleList)
 
 		if claimedIdentity == "Thief":
 			stolenCoins = 0
