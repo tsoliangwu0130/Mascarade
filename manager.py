@@ -317,6 +317,6 @@ while True:
 	showInfo(currentPlayer)
 	print "=========="
 
-	# for testing purpose
-	if roundCount > 40:
-		break
+	if currentPlayer.coin > 13:
+		print ">>> Player", currentOrder, "won! <<<"
+		exit()
