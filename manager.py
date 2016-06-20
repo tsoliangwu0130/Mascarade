@@ -5,7 +5,7 @@ import signal
 import sys
 
 # initial properties
-availableRolesList   = ['Beggar', 'Bishop', 'Cheat', 'Fool', 'Inquisitor', 'Judge', 'King', 'Peasant', 'Peasant', 'Queen', 'Spy', 'Thief', 'Widow', 'Witch']  # 14 roles available
+availableRolesList   = ['Bishop', 'Fool', 'Judge', 'King', 'Queen', 'Thief', 'Widow', 'Witch']
 availableActionsList = ['Swap', 'Glance', 'Announce']  # three basic actions player can do each round
 
 
@@ -170,9 +170,6 @@ def askResponse(player, action):
 		player.announce(claimedIdentity)
 
 		# role abilities
-		if claimedIdentity == "Beggar":
-			pass
-
 		if claimedIdentity == "Bishop":
 			richPlayerCount = 0
 			richestPlayers  = getRichestPlayers()
@@ -200,9 +197,6 @@ def askResponse(player, action):
 			player.coin        += 2
 			richestPlayer.coin -= 2
 
-		if claimedIdentity == "Cheat":
-			pass
-
 		if claimedIdentity == "Fool":
 			if player.order == userOrder:
 				print "Assign the orders of two players to swap their roles (or enter N not to swap):"
@@ -229,9 +223,6 @@ def askResponse(player, action):
 
 			player.coin += 1
 
-		if claimedIdentity == "Inquisitor":
-			pass
-
 		if claimedIdentity == "Judge":
 			player.coin += courtCoins
 			courtCoins  = 0
@@ -239,14 +230,8 @@ def askResponse(player, action):
 		if claimedIdentity == "King":
 			player.coin += 3
 
-		if claimedIdentity == "Peasant":
-			pass
-
 		if claimedIdentity == "Queen":
 			player.coin += 2
-
-		if claimedIdentity == "Spy":
-			pass
 
 		if claimedIdentity == "Thief":
 			stolenCoins = 0
