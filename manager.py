@@ -272,6 +272,7 @@ def askResponse(player, action):
 		else:
 			nextPlayerOrder = player.order + 1
 
+		challengeCount = 0
 		while nextPlayerOrder != player.order:
 			if nextPlayerOrder == userOrder:
 				print "Do you want to challenge this player (Y/N)?"
@@ -288,6 +289,7 @@ def askResponse(player, action):
 				else:
 					nextPlayerOrder += 1
 			else:
+				challengeCount += 1
 				if playerList[nextPlayerOrder].suspectedRole == claimedIdentity:
 					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
 					challengeHandler(playerList[nextPlayerOrder], player, claimedIdentity)
@@ -298,6 +300,10 @@ def askResponse(player, action):
 					else:
 						nextPlayerOrder += 1
 
+		# if all other players didn't challenge, execute the player ability
+		if challengeCount == playersNum - 1:
+			player.announce(claimedIdentity)
+			announceAbility(player, claimedIdentity)
 
 # start the game
 while True:
