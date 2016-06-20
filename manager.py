@@ -79,6 +79,137 @@ def getRichestPlayers():
 	return richestPlayers
 
 
+# challenge handler
+def challengeHandler(challenger, target, claimedIdentity):
+	global courtCoins
+
+	print ">>> Player", challenger.order, "is challenging Player", target.order, "! <<<"
+	print ">>> Player", challenger.order, "is", challenger.actualRole, "<<<"
+	print ">>> Player", target.order, "is", target.actualRole, "<<<"
+	challenger.status = "public"
+	target.status     = "public"
+	if target.actualRole == claimedIdentity:
+		print ">>> Player", challenger.order, "challenge failed! <<<"
+		target.announce(claimedIdentity)
+		announceAbility(target, claimedIdentity)
+		challenger.coin -= 1
+		courtCoins += 1
+	else:
+		print ">>> Player", challenger.order, "challenge sucessfully! <<<"
+		target.coin -= 1
+		courtCoins += 1
+
+
+def announceAbility(player, claimedIdentity):
+	# role abilities
+	if claimedIdentity == "Bishop":
+		richPlayerCount = 0
+		richestPlayers  = getRichestPlayers()
+
+		if len(richestPlayers) > 1:
+			# print all richest players
+			print "There are more than one player are richest: "
+			for richPlayer in richestPlayers:
+				if richPlayer.order != player.order:
+					richPlayerCount += 1
+					sys.stdout.write("  " + str(richPlayerCount) + ". Player " + str(richPlayer.order))
+					print ""
+
+			if player.order == userOrder:
+				richestPlayerOrder = int(raw_input("Which player do you want to take 2 coins from? ")) - 1
+				richestPlayer      = richestPlayers[richestPlayerOrder]
+			else:
+				richestPlayer = random.choice(richestPlayers)
+		elif len(richestPlayers) == 1:
+			print "You are the richest player!"
+			richestPlayer = richestPlayers[0]
+		else:
+			richestPlayer = richestPlayers[0]
+
+		player.coin        += 2
+		richestPlayer.coin -= 2
+
+	if claimedIdentity == "Fool":
+		if player.order == userOrder:
+			print "Assign the orders of two players to swap their roles (or enter N not to swap):"
+			fstTarget = raw_input("Target 1: ")
+			sndTarget = raw_input("Target 2: ")
+		else:
+			# randomly pick two players without repeat
+			fstTarget = random.choice(playerList).order
+			sndTarget = random.choice(playerList).order
+			while fstTarget == sndTarget:
+				sndTarget = random.choice(playerList).order
+
+		if fstTarget == "N" or sndTarget == "N":
+			print ">>> Not swap anyone! <<<"
+			pass
+		else:
+			fstTarget = int(fstTarget)
+			sndTarget = int(sndTarget)
+			playerList[fstTarget].actualRole, playerList[sndTarget].actualRole = playerList[sndTarget].actualRole, playerList[fstTarget].actualRole
+			print ">>> Swap player", fstTarget, "and player", sndTarget, "<<<"
+			# after swapping roles, players should re-guess their actual identities
+			playerList[fstTarget].suspectedRole = random.choice(possibleRoleList)
+			playerList[sndTarget].suspectedRole = random.choice(possibleRoleList)
+
+		player.coin += 1
+
+	if claimedIdentity == "Judge":
+		player.coin += courtCoins
+		courtCoins  = 0
+
+	if claimedIdentity == "King":
+		player.coin += 3
+
+	if claimedIdentity == "Queen":
+		player.coin += 2
+
+	if claimedIdentity == "Thief":
+		stolenCoins = 0
+		# find the left player and the right player
+		if player.order == 0:
+			leftPlayerOrder  = len(playerList) - 1
+			rightPlayerOrder = player.order + 1
+		elif player.order == len(playerList) - 1:
+			leftPlayerOrder  = player.order - 1
+			rightPlayerOrder = 0
+		else:
+			leftPlayerOrder  = player.order - 1
+			rightPlayerOrder = player.order + 1
+
+		# if the player doesn't have any coin, get 0 coin
+		if playerList[leftPlayerOrder].coin > 0:
+			stolenCoins += 1
+			playerList[leftPlayerOrder].coin -= 1
+			print ">>> Steal 1 coin from player", leftPlayerOrder, "<<<"
+		if playerList[rightPlayerOrder].coin > 0:
+			stolenCoins += 1
+			playerList[rightPlayerOrder].coin -= 1
+			print ">>> Steal 1 coin from player", rightPlayerOrder, "<<<"
+
+		player.coin += stolenCoins
+
+	if claimedIdentity == "Widow":
+		player.coin = 10
+
+	if claimedIdentity == "Witch":
+		moreCoinPlayers = []
+
+		if player.order == userOrder:
+			target = int(raw_input("Which player's fortune do you want to swap with? "))
+			targetPlayer = playerList[target]
+		else:
+			# get the list of player who have more coin
+			for moreCoinPlayer in playerList:
+				if moreCoinPlayer.order != player.order and moreCoinPlayer.coin >= player.coin:
+					moreCoinPlayers.append(moreCoinPlayer)
+			targetPlayer = random.choice(moreCoinPlayers)
+
+		player.coin, targetPlayer.coin = targetPlayer.coin, player.coin
+		print ">>> Swap the fortune with player", targetPlayer.order, "<<<"
+
+
 # ask response from player
 def askResponse(player, action):
 	global courtCoins
@@ -134,10 +265,6 @@ def askResponse(player, action):
 
 		print "*** Player", player.order, "announce! >>>", claimedIdentity, "<<<"
 
-		# wait 5 seconds for challenges from other players
-		signal.signal(signal.SIGALRM, interrupter)  # set alarm
-		signal.alarm(5)
-
 		# if there are other players who's suspectedRole are as same as the announcement, challenge it
 		# the manager only accept the challenge of the closest play if there are more than one player challenge
 		if player.order == len(playerList) - 1:
@@ -150,8 +277,12 @@ def askResponse(player, action):
 				print "Do you want to challenge this player (Y/N)?"
 				challenge = timerInput()
 				if challenge == "Y":
-					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
+					challengeHandler(playerList[nextPlayerOrder], player, claimedIdentity)
 					break
+				elif challenge == "N":
+					player.announce(claimedIdentity)
+					announceAbility(player, claimedIdentity)
+
 				if nextPlayerOrder == len(playerList) - 1:
 					nextPlayerOrder = 0
 				else:
@@ -159,123 +290,13 @@ def askResponse(player, action):
 			else:
 				if playerList[nextPlayerOrder].suspectedRole == claimedIdentity:
 					print ">>> Player", nextPlayerOrder, "Challenge! <<<"
+					challengeHandler(playerList[nextPlayerOrder], player, claimedIdentity)
 					break
 				else:
 					if nextPlayerOrder == len(playerList) - 1:
 						nextPlayerOrder = 0
 					else:
 						nextPlayerOrder += 1
-
-		signal.alarm(0)  # disable alarm while successfully get response
-		player.announce(claimedIdentity)
-
-		# role abilities
-		if claimedIdentity == "Bishop":
-			richPlayerCount = 0
-			richestPlayers  = getRichestPlayers()
-
-			if len(richestPlayers) > 1:
-				# print all richest players
-				print "There are more than one player are richest: "
-				for richPlayer in richestPlayers:
-					if richPlayer.order != player.order:
-						richPlayerCount += 1
-						sys.stdout.write("  " + str(richPlayerCount) + ". Player " + str(richPlayer.order))
-						print ""
-
-				if player.order == userOrder:
-					richestPlayerOrder = int(raw_input("Which player do you want to take 2 coins from? ")) - 1
-					richestPlayer      = richestPlayers[richestPlayerOrder]
-				else:
-					richestPlayer = random.choice(richestPlayers)
-			elif len(richestPlayers) == 1:
-				print "You are the richest player!"
-				richestPlayer = richestPlayers[0]
-			else:
-				richestPlayer = richestPlayers[0]
-
-			player.coin        += 2
-			richestPlayer.coin -= 2
-
-		if claimedIdentity == "Fool":
-			if player.order == userOrder:
-				print "Assign the orders of two players to swap their roles (or enter N not to swap):"
-				fstTarget = raw_input("Target 1: ")
-				sndTarget = raw_input("Target 2: ")
-			else:
-				# randomly pick two players without repeat
-				fstTarget = random.choice(playerList).order
-				sndTarget = random.choice(playerList).order
-				while fstTarget == sndTarget:
-					sndTarget = random.choice(playerList).order
-
-			if fstTarget == "N" or sndTarget == "N":
-				print ">>> Not swap anyone! <<<"
-				pass
-			else:
-				fstTarget = int(fstTarget)
-				sndTarget = int(sndTarget)
-				playerList[fstTarget].actualRole, playerList[sndTarget].actualRole = playerList[sndTarget].actualRole, playerList[fstTarget].actualRole
-				print ">>> Swap player", fstTarget, "and player", sndTarget, "<<<"
-				# after swapping roles, players should re-guess their actual identities
-				playerList[fstTarget].suspectedRole = random.choice(possibleRoleList)
-				playerList[sndTarget].suspectedRole = random.choice(possibleRoleList)
-
-			player.coin += 1
-
-		if claimedIdentity == "Judge":
-			player.coin += courtCoins
-			courtCoins  = 0
-
-		if claimedIdentity == "King":
-			player.coin += 3
-
-		if claimedIdentity == "Queen":
-			player.coin += 2
-
-		if claimedIdentity == "Thief":
-			stolenCoins = 0
-			# find the left player and the right player
-			if player.order == 0:
-				leftPlayerOrder  = len(playerList) - 1
-				rightPlayerOrder = player.order + 1
-			elif player.order == len(playerList) - 1:
-				leftPlayerOrder  = player.order - 1
-				rightPlayerOrder = 0
-			else:
-				leftPlayerOrder  = player.order - 1
-				rightPlayerOrder = player.order + 1
-
-			# if the player doesn't have any coin, get 0 coin
-			if playerList[leftPlayerOrder].coin > 0:
-				stolenCoins += 1
-				playerList[leftPlayerOrder].coin -= 1
-				print ">>> Steal 1 coin from player", leftPlayerOrder, "<<<"
-			if playerList[rightPlayerOrder].coin > 0:
-				stolenCoins += 1
-				playerList[rightPlayerOrder].coin -= 1
-				print ">>> Steal 1 coin from player", rightPlayerOrder, "<<<"
-
-			player.coin += stolenCoins
-
-		if claimedIdentity == "Widow":
-			player.coin = 10
-
-		if claimedIdentity == "Witch":
-			moreCoinPlayers = []
-
-			if player.order == userOrder:
-				target = int(raw_input("Which player's fortune do you want to swap with? "))
-				targetPlayer = playerList[target]
-			else:
-				# get the list of player who have more coin
-				for moreCoinPlayer in playerList:
-					if moreCoinPlayer.order != player.order and moreCoinPlayer.coin >= player.coin:
-						moreCoinPlayers.append(moreCoinPlayer)
-				targetPlayer = random.choice(moreCoinPlayers)
-
-			player.coin, targetPlayer.coin = targetPlayer.coin, player.coin
-			print ">>> Swap the fortune with player", targetPlayer.order, "<<<"
 
 
 # start the game
