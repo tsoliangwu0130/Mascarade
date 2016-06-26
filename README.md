@@ -20,6 +20,5 @@ simply run `python manager.py` to start the game
 * GUI should be implemented
 
 ### Authors
------------
 * [Tso-Liang Wu](https://github.com/tsoliangwu0130)
 * [Tien-Lung Chang](https://github.com/ShannaChang)
